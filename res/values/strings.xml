@@ -4,5 +4,6 @@
     <string name="app_name">AppAssistant</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="t9_keyboard_input_prompt">输入应用名称</string>
 
 </resources>
