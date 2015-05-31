@@ -9,13 +9,15 @@
         android:targetSdkVersion="21" />
 
     <application
+        android:name="com.handsomezhou.appassistant.application.AppAssistantApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         <activity
             android:name="com.handsomezhou.appassistant.activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
