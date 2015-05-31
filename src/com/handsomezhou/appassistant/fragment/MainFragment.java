@@ -6,7 +6,7 @@ import java.util.List;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ import com.handsomezhou.appassistant.view.T9TelephoneDialpadView;
 import com.handsomezhou.appassistant.view.T9TelephoneDialpadView.OnT9TelephoneDialpadView;
 
 public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadView,OnAppInfoLoad{
-	private static final String TAG="MainFragment";
+	//private static final String TAG="MainFragment";
 	
 	private List<Fragment> mFragments=null;
 	private CustomViewPager mCustomViewPager;
@@ -34,8 +34,8 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 	
 	
 	private interface AppInfoFragmentIndex{
-		public int LIST_VIEW=0;
-		public int GRID_VIEW=1;
+		public int GRID_VIEW=0;
+		public int LIST_VIEW=1;
 		
 	}
 	
@@ -44,17 +44,17 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 		setContext(getActivity());
 		mFragments=new ArrayList<Fragment>();
 		if(null!=mFragments){
-			Fragment appInfoListViewFragment=new AppInfoListViewFragment();
-			if(null!=appInfoListViewFragment){
-				mFragments.add(appInfoListViewFragment);
-			}
-			
 			Fragment appInfoGridViewFragment=new AppInfoGridViewFragment();
 			if(null!=appInfoGridViewFragment){
 				mFragments.add(appInfoGridViewFragment);
 			}
 			
-			setCurrentAppInfoFragmentIndex(AppInfoFragmentIndex.LIST_VIEW);
+			Fragment appInfoListViewFragment=new AppInfoListViewFragment();
+			if(null!=appInfoListViewFragment){
+				mFragments.add(appInfoListViewFragment);
+			}
+			
+			setCurrentAppInfoFragmentIndex(AppInfoFragmentIndex.GRID_VIEW);
 			
 		}
 		
@@ -86,13 +86,7 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 			@Override
 			public void onPageSelected(int pos) {
 				setCurrentAppInfoFragmentIndex(pos);
-				Fragment fragment=mFragments.get(getCurrentAppInfoFragmentIndex());
-				if(fragment instanceof AppInfoListViewFragment){
-					((AppInfoListViewFragment) fragment).updateView();
-				}else if(fragment instanceof AppInfoGridViewFragment){
-					((AppInfoGridViewFragment) fragment).updateView();
-				}
-				
+				updateSearch(mT9TelephoneDialpadView.getT9Input());
 			}
 			
 			@Override
@@ -131,8 +125,7 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 
 	@Override
 	public void onDialInputTextChanged(String curCharacter) {
-		// TODO Auto-generated method stub
-		
+		updateSearch(curCharacter);   
 	}
 
 	@Override
@@ -145,6 +138,8 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 	/*Start: OnAppInfoLoad*/
 	@Override
 	public void onAppInfoLoadSuccess() {
+		updateSearch(null);
+		
 		if(null==mFragments){
 			return;
 		}
@@ -193,4 +188,32 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 		ViewUtil.hideView(mT9TelephoneDialpadView);
 		ViewUtil.showView(mExpandKeyboardIv);
 	}
+	
+	private void updateSearch(String search) {
+		String curCharacter;
+		if (null == search) {
+			curCharacter = search;
+		} else {
+			curCharacter = search.trim();
+		}
+
+		Fragment fragment = mFragments.get(getCurrentAppInfoFragmentIndex());
+		if (fragment instanceof AppInfoListViewFragment) {
+			if (TextUtils.isEmpty(curCharacter)) {
+				AppInfoHelper.getInstance().getT9ListSearchAppInfo(null);
+			} else {
+				AppInfoHelper.getInstance().getT9ListSearchAppInfo(curCharacter);
+			}
+			((AppInfoListViewFragment) fragment).updateView();
+		} else if (fragment instanceof AppInfoGridViewFragment) {
+			if (TextUtils.isEmpty(curCharacter)) {
+				AppInfoHelper.getInstance().getT9GridSearchAppInfo(null);
+			} else {
+				AppInfoHelper.getInstance().getT9GridSearchAppInfo(curCharacter);
+			}
+			((AppInfoGridViewFragment) fragment).updateView();
+		}
+
+	}
+
 }

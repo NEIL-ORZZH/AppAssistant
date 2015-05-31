@@ -1,8 +1,7 @@
 package com.handsomezhou.appassistant.adapter;
 
 import java.util.List;
-import com.handsomezhou.appassistant.R;
-import com.handsomezhou.appassistant.model.AppInfo;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.handsomezhou.appassistant.R;
+import com.handsomezhou.appassistant.model.AppInfo;
+import com.handsomezhou.appassistant.util.ViewUtil;
 
 public class AppInfoAdapter extends ArrayAdapter<AppInfo> {
 	private Context mContext;
@@ -43,7 +46,18 @@ public class AppInfoAdapter extends ArrayAdapter<AppInfo> {
 		}
 		
 		viewHolder.mIconIv.setBackground(appInfo.getIcon());
-		viewHolder.mLabelTv.setText(appInfo.getLabel());
+		switch (appInfo.getSearchByType()) {
+		case SearchByLabel:
+			ViewUtil.showTextHighlight(viewHolder.mLabelTv, appInfo.getLabel(),
+					appInfo.getMatchKeywords().toString());
+			
+			break;
+		case SearchByNull:
+			ViewUtil.showTextNormal(viewHolder.mLabelTv, appInfo.getLabel());
+			break;
+		default:
+			break;
+		}
 				
 		return view;
 	}

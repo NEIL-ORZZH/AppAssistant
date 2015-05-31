@@ -3,13 +3,17 @@ package com.handsomezhou.appassistant.fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.handsomezhou.appassistant.R;
 import com.handsomezhou.appassistant.adapter.AppInfoAdapter;
 import com.handsomezhou.appassistant.helper.AppInfoHelper;
+import com.handsomezhou.appassistant.model.AppInfo;
+import com.handsomezhou.appassistant.util.AppUtil;
 import com.handsomezhou.appassistant.util.ViewUtil;
 
 public class AppInfoListViewFragment extends BaseFragment {
@@ -27,7 +31,7 @@ public class AppInfoListViewFragment extends BaseFragment {
 	@Override
 	protected void initData() {
 		setContext(getActivity());
-		mAppInfoAdapter=new AppInfoAdapter(getContext(), R.layout.app_info_list_item, AppInfoHelper.getInstance().getBaseSystemAppInfos());
+		mAppInfoAdapter=new AppInfoAdapter(getContext(), R.layout.app_info_list_item, AppInfoHelper.getInstance().getListSearchAppInfos());
 		
 	}
 
@@ -43,7 +47,18 @@ public class AppInfoListViewFragment extends BaseFragment {
 
 	@Override
 	protected void initListener() {
-		// TODO Auto-generated method stub
+		mAppInfoLv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				AppInfo appInfo=(AppInfo) parent.getItemAtPosition(position);
+				if(null!=appInfo){
+					AppUtil.startApp(getContext(), appInfo.getPackageName());
+				}
+				
+			}
+		});
 
 	}
 	

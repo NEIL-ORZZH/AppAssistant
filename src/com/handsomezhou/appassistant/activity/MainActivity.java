@@ -18,4 +18,11 @@ public class MainActivity extends BaseSingleFragmentActivity {
 		return false;
 	}
 
+	@Override
+	public void onBackPressed() {
+		moveTaskToBack(true);
+	}
+	
+	
+
 }

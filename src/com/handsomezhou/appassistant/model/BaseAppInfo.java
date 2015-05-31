@@ -20,7 +20,11 @@ public class BaseAppInfo implements Cloneable{
 		mPackageName = packageName;
 	}
 
-
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
 
 	public String getLabel() {
 		return mLabel;

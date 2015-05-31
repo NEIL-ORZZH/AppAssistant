@@ -3,11 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ListView
-        android:id="@+id/app_info_list_view"
+    <GridView
+        android:id="@+id/app_info_grid_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:columnWidth="80dp"
+        android:horizontalSpacing="20dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
+        android:verticalSpacing="24dp" >
+    </GridView>
 
     <TextView
         android:id="@+id/search_result_prompt_text_view"
