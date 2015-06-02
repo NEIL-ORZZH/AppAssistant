@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="t9_keyboard_input_prompt">输入应用名称</string>
     <string name="no_match_search_result">无相关搜索结果</string>
+    <string name="app_can_not_be_started_directly">该应用无法被直接打开</string>
+    <string name="the_app_has_been_started">该应用已经打开</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 import com.handsomezhou.appassistant.R;
 import com.handsomezhou.appassistant.adapter.AppInfoAdapter;
@@ -54,7 +55,15 @@ public class AppInfoListViewFragment extends BaseFragment {
 					int position, long id) {
 				AppInfo appInfo=(AppInfo) parent.getItemAtPosition(position);
 				if(null!=appInfo){
-					AppUtil.startApp(getContext(), appInfo.getPackageName());
+					if(!appInfo.getPackageName().equals(getContext().getPackageName())){
+						boolean startAppSuccess=AppUtil.startApp(getContext(), appInfo.getPackageName());
+						if(false==startAppSuccess){
+							Toast.makeText(getContext(), R.string.app_can_not_be_started_directly, Toast.LENGTH_SHORT).show();
+						}
+					}else{
+						Toast.makeText(getContext(), R.string.the_app_has_been_started, Toast.LENGTH_SHORT).show();
+					}
+					
 				}
 				
 			}

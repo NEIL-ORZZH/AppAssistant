@@ -17,6 +17,7 @@ import com.handsomezhou.appassistant.application.AppAssistantApplication;
 import com.handsomezhou.appassistant.model.AppInfo;
 import com.handsomezhou.appassistant.model.AppInfo.SearchByType;
 import com.handsomezhou.appassistant.model.AppType;
+import com.handsomezhou.appassistant.util.AppUtil;
 import com.pinyinsearch.model.PinyinUnit;
 import com.pinyinsearch.util.PinyinUtil;
 import com.pinyinsearch.util.T9MatchPinyinUnits;
@@ -219,18 +220,24 @@ public class AppInfoHelper {
 				if((ai.flags&ApplicationInfo.FLAG_SYSTEM)==1){// System application
 					AppInfo appInfo=getAppInfo(pm, ai);
 					if(null!=appInfo){
-						PinyinUtil.chineseStringToPinyinUnit(appInfo.getLabel(), appInfo.getLabelPinyinUnits());
-						String sortKey=PinyinUtil.getSortKey(appInfo.getLabelPinyinUnits()).toLowerCase();
-						appInfo.setSortKey(praseSortKey(sortKey));
-						mBaseSystemAppInfos.add(appInfo);
+						boolean canLaunchTheMainActivity=AppUtil.appCanLaunchTheMainActivity(mContext, appInfo.getPackageName());
+						if(true==canLaunchTheMainActivity){
+							PinyinUtil.chineseStringToPinyinUnit(appInfo.getLabel(), appInfo.getLabelPinyinUnits());
+							String sortKey=PinyinUtil.getSortKey(appInfo.getLabelPinyinUnits()).toLowerCase();
+							appInfo.setSortKey(praseSortKey(sortKey));
+							mBaseSystemAppInfos.add(appInfo);
+						}
 					}
 				}else{// Installed by user
 					AppInfo appInfo=getAppInfo(pm, ai);
 					if(null!=appInfo){
-						PinyinUtil.chineseStringToPinyinUnit(appInfo.getLabel(), appInfo.getLabelPinyinUnits());
-						String sortKey=PinyinUtil.getSortKey(appInfo.getLabelPinyinUnits()).toLowerCase();
-						appInfo.setSortKey(praseSortKey(sortKey));
-						mBaseUserAppInfos.add(appInfo);
+						boolean canLaunchTheMainActivity=AppUtil.appCanLaunchTheMainActivity(mContext, appInfo.getPackageName());
+						if(true==canLaunchTheMainActivity){
+							PinyinUtil.chineseStringToPinyinUnit(appInfo.getLabel(), appInfo.getLabelPinyinUnits());
+							String sortKey=PinyinUtil.getSortKey(appInfo.getLabelPinyinUnits()).toLowerCase();
+							appInfo.setSortKey(praseSortKey(sortKey));
+							mBaseUserAppInfos.add(appInfo);
+						}
 					}
 				}
 			}
