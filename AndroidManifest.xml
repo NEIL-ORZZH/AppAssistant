@@ -24,6 +24,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="com.handsomezhou.appassistant.service.AppAssistantService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.handsomezhou.appassistant.service.APP_ASSISTANT_SERVICE" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="com.handsomezhou.appassistant.broadcastreceiver.AppChangedReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <!-- <action android:name="android.intent.action.PACKAGE_RESTARTED" /> -->
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

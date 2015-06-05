@@ -65,46 +65,12 @@ public class AppInfoHelper {
 		mContext=AppAssistantApplication.getContext();
 		setCurrentAppType(AppType.ALL_APP);
 		
-		if(null==mBaseSystemAppInfos){
-			mBaseSystemAppInfos=new ArrayList<AppInfo>();
-		}
-		mBaseSystemAppInfos.clear();
-		
-		if(null==mBaseUserAppInfos){
-			mBaseUserAppInfos=new ArrayList<AppInfo>();
-		}
-		mBaseUserAppInfos.clear();
-		
-		if(null==mBaseAllAppInfos){
-			mBaseAllAppInfos=new ArrayList<AppInfo>();
-		}
-		mBaseAllAppInfos.clear();
-		
-		if(null==mListSearchAppInfos){
-			mListSearchAppInfos=new ArrayList<AppInfo>();
-		}
-		mListSearchAppInfos.clear();
-		
-		if(null==mGridSearchAppInfos){
-			mGridSearchAppInfos=new ArrayList<AppInfo>();
-		}
-		mGridSearchAppInfos.clear();
-		
-		if(null==mFirstNoListSearchResultInput){
-			mFirstNoListSearchResultInput=new StringBuffer();
-		}else{
-			mFirstNoListSearchResultInput.delete(0, mFirstNoListSearchResultInput.length());
-		}
-		
-		if(null==mFirstNoGridSearchResultInput){
-			mFirstNoGridSearchResultInput=new StringBuffer();
-		}else{
-			mFirstNoGridSearchResultInput.delete(0, mFirstNoGridSearchResultInput.length());
-		}
+		clearAppInfoData();
 		
 		return;
 	}
 
+	
 	public AppType getCurrentAppType() {
 		return mCurrentAppType;
 	}
@@ -178,6 +144,7 @@ public class AppInfoHelper {
 			return false;
 		}
 		
+		clearAppInfoData();
 		mLoadAppInfoTask=new AsyncTask<Object, Object, List<AppInfo>>(){
 
 			@Override
@@ -195,11 +162,10 @@ public class AppInfoHelper {
 			}
 			
 		}.execute();
-		
+		setAppInfoChanged(false);
 		return true;
 		
 	}
-	
 	
 	@SuppressLint("DefaultLocale")
 	public List<AppInfo> loadAppInfo(Context context){
@@ -424,6 +390,66 @@ public class AppInfoHelper {
 		}else{
 			Collections.sort(mGridSearchAppInfos, AppInfo.mSearchComparator);
 		}
+		return;
+	}
+	
+	public boolean isAppExist(String packageName){
+		boolean appExist=false;
+		do{
+			if(TextUtils.isEmpty(packageName)){
+				break;
+			}
+			
+			for(AppInfo ai:mBaseAllAppInfos){
+				if(ai.getPackageName().equals(packageName)){
+					appExist=true;
+					break;
+				}
+			}
+		}while(false);
+		
+		return appExist;
+	}
+	
+	private void clearAppInfoData(){
+
+		if(null==mBaseSystemAppInfos){
+			mBaseSystemAppInfos=new ArrayList<AppInfo>();
+		}
+		mBaseSystemAppInfos.clear();
+		
+		if(null==mBaseUserAppInfos){
+			mBaseUserAppInfos=new ArrayList<AppInfo>();
+		}
+		mBaseUserAppInfos.clear();
+		
+		if(null==mBaseAllAppInfos){
+			mBaseAllAppInfos=new ArrayList<AppInfo>();
+		}
+		mBaseAllAppInfos.clear();
+		
+		if(null==mListSearchAppInfos){
+			mListSearchAppInfos=new ArrayList<AppInfo>();
+		}
+		mListSearchAppInfos.clear();
+		
+		if(null==mGridSearchAppInfos){
+			mGridSearchAppInfos=new ArrayList<AppInfo>();
+		}
+		mGridSearchAppInfos.clear();
+		
+		if(null==mFirstNoListSearchResultInput){
+			mFirstNoListSearchResultInput=new StringBuffer();
+		}else{
+			mFirstNoListSearchResultInput.delete(0, mFirstNoListSearchResultInput.length());
+		}
+		
+		if(null==mFirstNoGridSearchResultInput){
+			mFirstNoGridSearchResultInput=new StringBuffer();
+		}else{
+			mFirstNoGridSearchResultInput.delete(0, mFirstNoGridSearchResultInput.length());
+		}
+		
 		return;
 	}
 	
