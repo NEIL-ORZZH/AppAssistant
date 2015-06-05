@@ -3,6 +3,7 @@ package com.handsomezhou.appassistant.util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.text.TextUtils;
 
 public class AppUtil {
@@ -53,4 +54,17 @@ public class AppUtil {
 		
 		return canLaunchTheMainActivity;
 	} 
+	
+	/**
+	 * uninstall app via package name
+	 * @param context
+	 * @param packageName
+	 */
+	public static void uninstallApp(Context context,String packageName){
+		Uri packageUri = Uri.parse("package:" + packageName);  
+		Intent intent = new Intent();  
+		intent.setAction(Intent.ACTION_DELETE);  
+		intent.setData(packageUri);  
+		context.startActivity(intent);  
+	}
 }

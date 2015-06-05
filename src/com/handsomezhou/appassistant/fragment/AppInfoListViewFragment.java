@@ -1,9 +1,14 @@
 package com.handsomezhou.appassistant.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +33,7 @@ public class AppInfoListViewFragment extends BaseFragment {
 		updateView();
 		super.onResume();
 	}
+
 
 	@Override
 	protected void initData() {
@@ -68,7 +74,21 @@ public class AppInfoListViewFragment extends BaseFragment {
 				
 			}
 		});
+		
+		mAppInfoLv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				AppInfo appInfo=(AppInfo) parent.getItemAtPosition(position);
+				if(null!=appInfo){
+					
+					AppUtil.uninstallApp(getContext(),appInfo.getPackageName());
+				}
+				return true;
+			}
+		});
+		
 	}
 	
 	public void updateView(){
@@ -96,4 +116,6 @@ public class AppInfoListViewFragment extends BaseFragment {
 	public void appInfoLoadFailed(){
 		updateView();
 	}
+	
+	
 }
