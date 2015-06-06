@@ -78,6 +78,7 @@ public class T9TelephoneDialpadView extends LinearLayout implements
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mDialpadView = inflater.inflate(R.layout.t9_telephone_dialpad_layout,
 				this);
+		mDialpadView.setBackgroundColor(mContext.getResources().getColor(R.color.black));
 
 		mTelephoneDialCloseBtn = (Button) mDialpadView
 				.findViewById(R.id.telephone_dial_close_btn);

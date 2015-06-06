@@ -32,11 +32,29 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 	private T9TelephoneDialpadView mT9TelephoneDialpadView;
 	private ImageView mExpandKeyboardIv;
 	
-	
-	private interface AppInfoFragmentIndex{
+	public interface AppInfoFragmentIndex{
 		public int GRID_VIEW=0;
 		public int LIST_VIEW=1;
 		
+	}
+	
+	/**
+	 *  public static FragmentDataPassToFragment newInstance(Date date){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(EXTRA_DATE, date);
+        
+        FragmentDataPassToFragment fragment = new FragmentDataPassToFragment();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }  
+    
+	 */
+	
+	public static MainFragment newInstance(){
+		MainFragment fragment=new MainFragment();
+		
+		return fragment;
 	}
 	
 	@Override
@@ -72,7 +90,8 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 		mT9TelephoneDialpadView.setOnT9TelephoneDialpadView(this);
 		
 		mExpandKeyboardIv=(ImageView) view.findViewById(R.id.expand_keyboard_image_view);
-		mExpandKeyboardIv.setVisibility(View.GONE);
+		mExpandKeyboardIv.setVisibility(View.GONE);		
+		
 		return view;
 	}
 
@@ -81,6 +100,7 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 		FragmentManager fm=getChildFragmentManager();
 		mFragmentCustomPagerAdapter=new FragmentCustomPagerAdapter(fm, mFragments);
 		mCustomViewPager.setAdapter(mFragmentCustomPagerAdapter);
+		mCustomViewPager.setPagingEnabled(false);
 		mCustomViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			
 			@Override
@@ -177,7 +197,13 @@ public class MainFragment extends BaseFragment implements OnT9TelephoneDialpadVi
 		mCurrentAppInfoFragmentIndex = currentAppInfoFragmentIndex;
 	}
 
-	
+	public void setCurrentFragment(int fragmentIndex){
+		if(fragmentIndex<0||fragmentIndex>=mFragments.size()){
+			return;
+		}
+		mCustomViewPager.setCurrentItem(fragmentIndex);
+		setCurrentAppInfoFragmentIndex(fragmentIndex);
+	}
 	private void expandKeyboard(){
 		ViewUtil.showView(mT9TelephoneDialpadView);
 		ViewUtil.hideView(mExpandKeyboardIv);

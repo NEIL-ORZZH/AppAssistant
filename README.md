@@ -13,6 +13,15 @@ Depend
 	data matching method and so on for T9 pinyin search and Qwerty pinyin search.
 [https://github.com/handsomezhou/PinyinSearchLibrary](https://github.com/handsomezhou/PinyinSearchLibrary)
 
+### AndroidResideMenu
+    The idea of ResideMenu is from Dribbble 1 and 2. It has come true and run in iOS devices.
+	iOS ResideMenu This project is the RefsideMenu Android version. The visual effect is partly referred to iOS version of ResideMenu.
+[https://github.com/SpecialCyCi/AndroidResideMenu](https://github.com/SpecialCyCi/AndroidResideMenu)
+
+### NineOldAndroids
+    Android library for using the Honeycomb animation API on all versions of the platform back to 1.0!
+[https://github.com/JakeWharton/NineOldAndroids](https://github.com/JakeWharton/NineOldAndroids)
+
 License 
 ---------------
 	Copyright 2015 handsomezhou
