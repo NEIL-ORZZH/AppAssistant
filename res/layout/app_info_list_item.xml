@@ -18,6 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:gravity="center"
+        android:singleLine="true"
         android:layout_marginLeft="@dimen/margin_left"
         android:layout_toRightOf="@id/icon_image_view" />
 
