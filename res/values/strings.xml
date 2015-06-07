@@ -7,6 +7,48 @@
     <string name="app_can_not_be_started_directly">该应用无法被直接打开</string>
     <string name="the_app_has_been_started">该应用已经打开</string>
     <string name="settings">设置</string>
+
+    <!-- start: about -->
     <string name="about">关于</string>
+    <string name="versionName">版本信息</string>
+    <string name="colon">:</string>
+
+    <!-- end: about -->
+
+
+    <!-- start: app info -->
+
+    <string name="github_home">https://github.com/handsomezhou</string>
+    <string name="project_home_prompt">项目主页</string>
+    <string name="project_home">https://github.com/handsomezhou/AppAssistant</string>
+    <string name="author_prompt">作者</string>
+    <string name="author">handsomezhou</string>
+    <string name="contact_prompt">联系方式</string>
+    <string name="email">quanjunzhou@gmail.com</string>
+    <string name="open_source_project_references">开源项目引用</string>
+
+    <!-- start: open_source_project_references -->
+    <string name="pinyin_search_library_prompt">pinyinsearch</string>
+    <string name="pinyin_search_library">https://github.com/handsomezhou/PinyinSearchLibrary</string>
+    <string name="pinyin4j_prompt">pinyin4j</string>
+    <string name="pinyin4j">http://sourceforge.net/projects/pinyin4j/</string>
+    <string name="android_reside_menu_prompt">AndroidResideMenu</string>
+    <string name="android_reside_menu">https://github.com/SpecialCyCi/AndroidResideMenu/</string>
+    <string name="nine_old_androids_prompt">NineOldAndroids</string>
+    <string name="nine_old_androids">https://github.com/JakeWharton/NineOldAndroids</string>
+    <string name="license_prompt">License</string>
+    <string name="license">Copyright 2015 handsomezhou\n\n
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at\n\n
+        http://www.apache.org/licenses/LICENSE-2.0\n\n
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.\n</string>
+
+    <!-- end: open_source_project_references -->
+    <!-- end: app info -->
 
 </resources>

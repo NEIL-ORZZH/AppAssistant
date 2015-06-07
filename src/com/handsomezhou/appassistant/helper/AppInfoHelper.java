@@ -462,6 +462,7 @@ public class AppInfoHelper {
 		appInfo.setIcon(applicationInfo.loadIcon(pm));
 		appInfo.setLabel(String.valueOf(applicationInfo.loadLabel(pm)));
 		appInfo.setPackageName(applicationInfo.packageName);
+	
 		
 		return appInfo;
 	}
