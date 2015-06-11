@@ -6,6 +6,7 @@
     <string name="no_match_search_result">无相关搜索结果</string>
     <string name="app_can_not_be_started_directly">该应用无法被直接打开</string>
     <string name="the_app_has_been_started">该应用已经打开</string>
+    <string name="back">返回</string>
     <string name="settings">设置</string>
 
     <!-- start: about -->

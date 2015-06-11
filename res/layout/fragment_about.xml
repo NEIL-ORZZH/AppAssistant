@@ -3,16 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="back" />
+    <com.handsomezhou.appassistant.view.NavigationBarLayout
+        android:id="@+id/navigation_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/back_btn" >
+        android:layout_below="@id/navigation_bar_layout" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -72,17 +71,13 @@
                         android:text="@string/project_home_prompt" />
 
                     <TextView
+                        style="@style/TextLoopScroll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/margin"
                         android:layout_toRightOf="@id/project_home_prompt_text_view"
                         android:autoLink="web"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:singleLine="true"
                         android:text="@string/project_home" />
                 </RelativeLayout>
 
@@ -161,17 +156,13 @@
                             android:text="@string/pinyin_search_library_prompt" />
 
                         <TextView
+                            style="@style/TextLoopScroll"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_margin="@dimen/margin"
                             android:layout_toRightOf="@id/pinyin_search_library_prompt_text_view"
                             android:autoLink="web"
-                            android:ellipsize="marquee"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"
                             android:text="@string/pinyin_search_library" />
                     </RelativeLayout>
 
@@ -190,17 +181,13 @@
                             android:text="@string/pinyin4j_prompt" />
 
                         <TextView
+                            style="@style/TextLoopScroll"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_margin="@dimen/margin"
                             android:layout_toRightOf="@id/pinyin4j_prompt_text_view"
                             android:autoLink="web"
-                            android:ellipsize="marquee"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"
                             android:text="@string/pinyin4j" />
                     </RelativeLayout>
 
@@ -219,17 +206,13 @@
                             android:text="@string/android_reside_menu_prompt" />
 
                         <TextView
+                            style="@style/TextLoopScroll"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_margin="@dimen/margin"
                             android:layout_toRightOf="@id/android_reside_menu_prompt_text_view"
                             android:autoLink="web"
-                            android:ellipsize="marquee"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"
                             android:text="@string/android_reside_menu" />
                     </RelativeLayout>
 
@@ -248,17 +231,13 @@
                             android:text="@string/nine_old_androids_prompt" />
 
                         <TextView
+                            style="@style/TextLoopScroll"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_margin="@dimen/margin"
                             android:layout_toRightOf="@id/nine_old_androids_prompt_text_view"
                             android:autoLink="web"
-                            android:ellipsize="marquee"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"
                             android:text="@string/nine_old_androids" />
                     </RelativeLayout>
                 </RelativeLayout>
